@@ -13,6 +13,10 @@ function _git_is_dirty
   echo (command git status -s --ignore-submodules=dirty ^/dev/null)
 end
 
+function _git_tag
+  echo (command git rev-parse --short HEAD ^ /dev/null)
+end
+
 function fish_prompt
   set -l cyan (set_color cyan)
   set -l yellow (set_color yellow)
@@ -39,13 +43,15 @@ function fish_prompt
   # Show git branch and status
   if [ (_git_branch_name) ]
     set -l git_branch (_git_branch_name)
+    set -l git_tag (_git_tag)
 
     if [ (_git_is_dirty) ]
       set git_info '(' $yellow $git_branch "±" $normal ')'
     else
       set git_info '(' $green $git_branch $normal ')'
     end
-    echo -n -s ' ' $git_info $normal
+
+    echo -n -s ' ' $git_info ':' $git_tag $normal
   end
 
   # Terminate with a nice prompt char
