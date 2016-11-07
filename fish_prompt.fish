@@ -18,6 +18,9 @@ function _git_tag
 end
 
 function fish_prompt
+  # Store the previous exit code
+  set -l exit_code $status
+
   set -l cyan (set_color cyan)
   set -l yellow (set_color yellow)
   set -l red (set_color red)
@@ -58,7 +61,12 @@ function fish_prompt
     echo -n -s ' ' $git_info $normal
   end
 
-  # Terminate with a nice prompt char
+  if [ $exit_code = 0 ]
+    set marker $green '⟩ ' $normal
+  else
+    set marker $red '⟩ ' $normal
+  end
+
   echo -e ''
-  echo -e -n -s '⟩ ' $normal
+  echo -e -n -s $marker
 end
