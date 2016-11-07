@@ -23,6 +23,7 @@ function fish_prompt
   set -l red (set_color red)
   set -l blue (set_color blue)
   set -l green (set_color green)
+  set -l magenta (set_color magenta)
   set -l normal (set_color normal)
 
   set -l cwd $blue(pwd | sed "s:^$HOME:~:")
@@ -45,13 +46,16 @@ function fish_prompt
     set -l git_branch (_git_branch_name)
     set -l git_tag (_git_tag)
 
+    set git_info '('
     if [ (_git_is_dirty) ]
-      set git_info '(' $yellow $git_branch "±" $normal ')'
+      set git_info $git_info $yellow $git_branch "±" $normal
     else
-      set git_info '(' $green $git_branch $normal ')'
+      set git_info $git_info $green $git_branch $normal
     end
+    set git_info $git_info ':' $magenta $git_tag $normal
+    set git_info $git_info $normal ')'
 
-    echo -n -s ' ' $git_info ':' $git_tag $normal
+    echo -n -s ' ' $git_info $normal
   end
 
   # Terminate with a nice prompt char
