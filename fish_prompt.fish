@@ -17,6 +17,10 @@ function _git_tag
   echo (command git rev-parse --short HEAD ^ /dev/null)
 end
 
+function _timestamp
+  echo (command date "+%H:%M:%S")
+end
+
 function fish_prompt
   # Store the previous exit code
   set -l exit_code $status
@@ -46,20 +50,19 @@ function fish_prompt
 
   # Show git branch and status
   if [ (_git_branch_name) ]
-    set -l git_branch (_git_branch_name)
-    set -l git_tag (_git_tag)
-
     set git_info '('
     if [ (_git_is_dirty) ]
-      set git_info $git_info $yellow $git_branch "±" $normal
+      set git_info $git_info $yellow (_git_branch_name) "±" $normal
     else
-      set git_info $git_info $green $git_branch $normal
+      set git_info $git_info $green (_git_branch_name) $normal
     end
-    set git_info $git_info ':' $magenta $git_tag $normal
+    set git_info $git_info ':' $magenta (_git_tag) $normal
     set git_info $git_info $normal ')'
 
     echo -n -s ' ' $git_info $normal
   end
+
+  echo -e ' ['$green(_timestamp)$normal']'
 
   if [ $exit_code = 0 ]
     set marker $green '⟩ ' $normal
