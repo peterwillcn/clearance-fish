@@ -17,7 +17,7 @@ Gives you the whole line for your commands while also showing you important info
 
 Adds a blank line before every new promt to keep everything clean and easy on your eyes.
 
-![clearance theme](https://raw.github.com/cseelus/clearance-fish/master/clearance-fish_preview.png)
+![clearance theme](https://raw.github.com/sebdah/clearance-fish/master/clearance-fish_preview.png)
 
 ## Like it?
 
