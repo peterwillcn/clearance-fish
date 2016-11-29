@@ -1,4 +1,12 @@
-# Fish Theme: clearance
+# Pimped Fish Theme: clearance
+
+This is my enhanced fork of the clearance fish theme. It gives you a couple of
+things that the original clearance theme does not:
+
+- Current git tag (short format)
+- Current timestamp on the right prompt
+
+## What's the fuzz?
 
 A minimalist [fish shell](http://fishshell.com/) while decadent theme for people who use Git.
 
