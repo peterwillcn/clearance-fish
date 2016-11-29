@@ -62,8 +62,6 @@ function fish_prompt
     echo -n -s ' ' $git_info $normal
   end
 
-  echo -e ' ['$green(_timestamp)$normal']'
-
   if [ $exit_code = 0 ]
     set marker $green '⟩ ' $normal
   else
@@ -72,4 +70,8 @@ function fish_prompt
 
   echo -e ''
   echo -e -n -s $marker
+end
+
+function fish_right_prompt
+  echo -e '['(set_color red)(_timestamp)(set_color normal)']'
 end
