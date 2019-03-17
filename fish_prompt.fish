@@ -50,14 +50,12 @@ function fish_prompt
 
   # Show git branch and status
   if [ (_git_branch_name) ]
-    set git_info '('
     if [ (_git_is_dirty) ]
       set git_info $git_info $yellow (_git_branch_name) "±" $normal
     else
       set git_info $git_info $green (_git_branch_name) $normal
     end
-    set git_info $git_info ':' $magenta (_git_tag) $normal
-    set git_info $git_info $normal ')'
+    set git_info $git_info ' ' $magenta (_git_tag) $normal
 
     echo -n -s ' ' $git_info $normal
   end
